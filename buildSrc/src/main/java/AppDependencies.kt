@@ -1,10 +1,8 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 object AppDependencies {
-    //std lib
     val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
 
-    // DI
     val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     val daggerAndroid = "com.google.dagger:dagger-android:${Versions.dagger}"
@@ -16,14 +14,12 @@ object AppDependencies {
     val rxKotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.rxJava}"
     val rxAndroid = "io.reactivex.rxjava3:rxandroid:3.0.0"
 
-    //android ui
     private val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     private val material = "com.google.android.material:material:${Versions.appcompat}"
     private val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     private val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 
-    //test libs
     private val junit = "junit:junit:${Versions.junit}"
     private val mockito = "org.mockito:mockito-core:2.19.0"
     private val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:3.2.0"
