@@ -46,6 +46,5 @@ dependencies {
     implementation(AppDependencies.appLibraries)
     kapt(AppDependencies.daggerCompiler)
     kapt(AppDependencies.daggerAndroidCompiler)
-    implementation("io.reactivex.rxjava3:rxandroid:3.0.0")
     testImplementation(AppDependencies.testLibraries)
 }

@@ -12,6 +12,4 @@ object Versions {
 
     //test
     const val junit = "4.12"
-    const val extJunit = "1.1.1"
-    const val espresso = "3.2.0"
 }

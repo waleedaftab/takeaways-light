@@ -14,6 +14,7 @@ object AppDependencies {
 
     val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.rxJava}"
     val rxKotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.rxJava}"
+    val rxAndroid = "io.reactivex.rxjava3:rxandroid:3.0.0"
 
     //android ui
     private val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
@@ -26,8 +27,6 @@ object AppDependencies {
     private val junit = "junit:junit:${Versions.junit}"
     private val mockito = "org.mockito:mockito-core:2.19.0"
     private val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:3.2.0"
-    private val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
-    private val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
 
     val appLibraries = arrayListOf<String>().apply {
         add(kotlinStdLib)
@@ -39,13 +38,9 @@ object AppDependencies {
         add(rxKotlin)
         add(appcompat)
         add(material)
+        add(rxAndroid)
         add(constraintLayout)
     }
-/*
-    val androidTestLibraries = arrayListOf<String>().apply {
-        add(extJUnit)
-        add(espressoCore)
-    }*/
 
     val testLibraries = arrayListOf<String>().apply {
         add(junit)
@@ -71,12 +66,6 @@ fun DependencyHandler.implementation(dependency: String) {
 fun DependencyHandler.implementation(list: List<String>) {
     list.forEach { dependency ->
         add("implementation", dependency)
-    }
-}
-
-fun DependencyHandler.androidTestImplementation(list: List<String>) {
-    list.forEach { dependency ->
-        add("androidTestImplementation", dependency)
     }
 }
 
