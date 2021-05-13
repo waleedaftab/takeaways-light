@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Takeaways Light</string>
+    <string name="status">Status:</string>
+    <string name="best_match">Best match:</string>
+    <string name="newest">Newest:</string>
+    <string name="average_rating">Average Rating:</string>
+    <string name="distance">Distance:</string>
+    <string name="popularity">Popularity:</string>
+    <string name="average_product_price">Average Product Price:</string>
+    <string name="delivery_cost">Delivery Cost:</string>
+    <string name="min_cost">Min Cost:</string>
+    <string name="restaurant_details">Restaurant Details</string>
+</resources>
