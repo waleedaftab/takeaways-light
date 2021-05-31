@@ -10,7 +10,6 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
-
 @Singleton
 @Component(
     modules = [
@@ -18,7 +17,8 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         DataModule::class,
         DomainModule::class,
-        ActivityBuilderModule::class
+        ActivityBuilderModule::class,
+        MapperModule::class
     ]
 )
 interface AppComponent : AndroidInjector<TakeawaysLightApp> {

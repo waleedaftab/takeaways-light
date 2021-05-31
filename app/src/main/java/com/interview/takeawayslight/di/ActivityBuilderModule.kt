@@ -7,11 +7,9 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class ActivityBuilderModule {
-    @ActivityScope
-    @ContributesAndroidInjector(modules = [RestaurantListActivityModule::class])
+    @ContributesAndroidInjector
     abstract fun contributeRestaurantListActivity(): RestaurantListActivity
 
-    @ActivityScope
-    @ContributesAndroidInjector(modules = [RestaurantDetailsActivityModule::class])
+    @ContributesAndroidInjector
     abstract fun contributeRestaurantDetailsActivity(): RestaurantDetailsActivity
 }

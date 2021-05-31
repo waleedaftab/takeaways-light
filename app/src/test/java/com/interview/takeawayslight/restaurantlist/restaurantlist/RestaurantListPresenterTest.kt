@@ -5,10 +5,7 @@ import com.interview.domain.interactors.RestaurantListInteractor
 import com.interview.domain.interactors.SortingOrder
 import com.interview.domain.model.Restaurant
 import com.interview.domain.model.SortingValues
-import com.interview.takeawayslight.core.SchedulersFactory
-import com.interview.takeawayslight.model.RestaurantViewModel
-import com.interview.takeawayslight.restaurantlist.RestaurantListMVP
-import com.interview.takeawayslight.restaurantlist.RestaurantListPresenterImpl
+import com.interview.takeawayslight.model.RestaurantDataModel
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.TestScheduler
@@ -34,7 +31,7 @@ class RestaurantListPresenterTest {
     lateinit var restaurantListInteractor: RestaurantListInteractor
 
     @Mock
-    lateinit var mapper: Mapper<Restaurant, RestaurantViewModel>
+    lateinit var mapper: Mapper<Restaurant, RestaurantDataModel>
 
     private val testScheduler = TestScheduler()
 
@@ -97,11 +94,11 @@ class RestaurantListPresenterTest {
         verify(restaurantListInteractor).addFavorite("restaurant")
     }
 
-    private fun getRestaurantViewModel() = RestaurantViewModel("restaurant", "open", true)
+    private fun getRestaurantViewModel() = RestaurantDataModel("restaurant", "open", true)
     private fun getRestaurantViewModels() = listOf(
-        RestaurantViewModel("restaurant1", "open", true),
-        RestaurantViewModel("restaurant2", "closed", false),
-        RestaurantViewModel("restaurant3", "open", false)
+        RestaurantDataModel("restaurant1", "open", true),
+        RestaurantDataModel("restaurant2", "closed", false),
+        RestaurantDataModel("restaurant3", "open", false)
     )
 
     private fun getSortOptions() = listOf(

@@ -1,8 +1,8 @@
 package com.interview.domain.interactors
 
 import com.interview.domain.model.Restaurant
-import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.flow.Flow
 
 interface RestaurantDetailInteractor {
-    fun getRestaurantDetails(restaurantName: String): Single<Restaurant>
+    fun getRestaurantDetails(restaurantName: String): Flow<Restaurant>
 }

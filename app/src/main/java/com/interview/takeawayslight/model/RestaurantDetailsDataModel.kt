@@ -1,6 +1,6 @@
 package com.interview.takeawayslight.model
 
-data class RestaurantDetailsViewModel(
+data class RestaurantDetailsDataModel(
     val name: String,
     val status: String,
     val isFavorite: Boolean,

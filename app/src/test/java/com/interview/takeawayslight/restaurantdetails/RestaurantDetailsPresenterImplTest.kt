@@ -4,8 +4,7 @@ import com.interview.data.mapper.Mapper
 import com.interview.domain.interactors.RestaurantDetailInteractor
 import com.interview.domain.model.Restaurant
 import com.interview.domain.model.SortingValues
-import com.interview.takeawayslight.core.SchedulersFactory
-import com.interview.takeawayslight.model.RestaurantDetailsViewModel
+import com.interview.takeawayslight.model.RestaurantDetailsDataModel
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.TestScheduler
 import org.junit.Before
@@ -28,7 +27,7 @@ class RestaurantDetailsPresenterImplTest {
     lateinit var schedulersFactory: SchedulersFactory
 
     @Mock
-    lateinit var restaurantToRestaurantDetailsMapper: Mapper<Restaurant, RestaurantDetailsViewModel>
+    lateinit var restaurantToRestaurantDetailsMapper: Mapper<Restaurant, RestaurantDetailsDataModel>
 
     private val testScheduler = TestScheduler()
 
@@ -57,7 +56,7 @@ class RestaurantDetailsPresenterImplTest {
         verify(view).showRestaurantDetails(getRestaurantViewModel())
     }
 
-    private fun getRestaurantViewModel() = RestaurantDetailsViewModel(
+    private fun getRestaurantViewModel() = RestaurantDetailsDataModel(
         "restaurant",
         "open",
         true,

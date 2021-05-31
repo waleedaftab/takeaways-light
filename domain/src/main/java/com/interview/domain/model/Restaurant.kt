@@ -6,6 +6,10 @@ data class Restaurant(
     val sortingValues: SortingValues,
 ) {
     var isFavorite: Boolean = false
+
+    init {
+        isFavorite = false
+    }
 }
 
 data class SortingValues(

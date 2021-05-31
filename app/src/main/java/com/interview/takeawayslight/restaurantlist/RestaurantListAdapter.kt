@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.interview.takeawayslight.R
 import com.interview.takeawayslight.databinding.RestaurantCardBinding
-import com.interview.takeawayslight.model.RestaurantViewModel
+import com.interview.takeawayslight.model.RestaurantDataModel
 
 class RestaurantListAdapter(
     private val layoutInflater: LayoutInflater,
-    private val onRestaurantClicked: (restaurant: RestaurantViewModel) -> Unit,
-    private val onFavoriteSelected: (restaurant: RestaurantViewModel) -> Unit
+    private val onRestaurantClicked: (restaurant: RestaurantDataModel) -> Unit,
+    private val onFavoriteSelected: (restaurant: RestaurantDataModel) -> Unit
 ) : RecyclerView.Adapter<RestaurantListAdapter.RestaurantCardViewHolder>() {
 
-    private var restaurantsList: List<RestaurantViewModel> = emptyList()
+    private var restaurantsList: List<RestaurantDataModel> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantCardViewHolder {
         val binding = RestaurantCardBinding.inflate(layoutInflater, parent, false)
@@ -36,7 +36,7 @@ class RestaurantListAdapter(
         }
     }
 
-    fun setData(newList: List<RestaurantViewModel>) {
+    fun setData(newList: List<RestaurantDataModel>) {
         this.restaurantsList = newList
         notifyDataSetChanged()
     }

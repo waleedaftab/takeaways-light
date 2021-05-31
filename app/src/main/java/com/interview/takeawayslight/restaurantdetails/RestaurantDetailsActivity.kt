@@ -1,19 +1,25 @@
 package com.interview.takeawayslight.restaurantdetails
 
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.interview.takeawayslight.R
-import com.interview.takeawayslight.core.BaseActivity
 import com.interview.takeawayslight.databinding.ActivityRestaurantDetailsBinding
-import com.interview.takeawayslight.model.RestaurantDetailsViewModel
+import com.interview.takeawayslight.model.RestaurantDetailsDataModel
 import com.interview.takeawayslight.router.IntentExtras.RESTAURANT_NAME
+import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class RestaurantDetailsActivity : BaseActivity<RestaurantDetailsMVP, RestaurantDetailsPresenter>(), RestaurantDetailsMVP {
+class RestaurantDetailsActivity : DaggerAppCompatActivity() {
 
     @Inject
-    override lateinit var presenter: RestaurantDetailsPresenter
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var binding: ActivityRestaurantDetailsBinding
+
+    private val restaurantDetailsViewModel: RestaurantDetailsViewModel by viewModels {
+        viewModelFactory
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,29 +29,26 @@ class RestaurantDetailsActivity : BaseActivity<RestaurantDetailsMVP, RestaurantD
             setDisplayHomeAsUpEnabled(true)
             setTitle(R.string.restaurant_details)
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
         intent.getStringExtra(RESTAURANT_NAME)?.let {
-            presenter.init(it)
+            restaurantDetailsViewModel.getRestaurantDetails(it)
+                .observe(this, this::showRestaurantDetails)
         }
     }
 
-    override fun showRestaurantDetails(viewModel: RestaurantDetailsViewModel) {
-        binding.restaurantName.text = viewModel.name
-        binding.restaurantStatus.text = viewModel.status
+    private fun showRestaurantDetails(dataModel: RestaurantDetailsDataModel) {
+        binding.restaurantName.text = dataModel.name
+        binding.restaurantStatus.text = dataModel.status
         binding.favoriteIv.setImageResource(
-            if (viewModel.isFavorite) R.drawable.ic_favorite_selected else R.drawable.ic_favorite_unselected
+            if (dataModel.isFavorite) R.drawable.ic_favorite_selected else R.drawable.ic_favorite_unselected
         )
-        binding.bestMatch.text = viewModel.bestMatch.toString()
-        binding.newest.text = viewModel.newest.toString()
-        binding.averageRating.text = viewModel.ratingAverage.toString()
-        binding.distance.text = viewModel.distance.toString()
-        binding.popularity.text = viewModel.popularity.toString()
-        binding.productPrice.text = viewModel.averageProductPrice.toString()
-        binding.deliveryCost.text = viewModel.deliveryCosts.toString()
-        binding.minCost.text = viewModel.minCost.toString()
+        binding.bestMatch.text = dataModel.bestMatch.toString()
+        binding.newest.text = dataModel.newest.toString()
+        binding.averageRating.text = dataModel.ratingAverage.toString()
+        binding.distance.text = dataModel.distance.toString()
+        binding.popularity.text = dataModel.popularity.toString()
+        binding.productPrice.text = dataModel.averageProductPrice.toString()
+        binding.deliveryCost.text = dataModel.deliveryCosts.toString()
+        binding.minCost.text = dataModel.minCost.toString()
     }
 
     override fun onSupportNavigateUp(): Boolean {

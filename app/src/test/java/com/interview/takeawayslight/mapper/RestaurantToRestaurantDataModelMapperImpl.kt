@@ -2,14 +2,14 @@ package com.interview.takeawayslight.mapper
 
 import com.interview.domain.model.Restaurant
 import com.interview.domain.model.SortingValues
-import com.interview.takeawayslight.model.RestaurantViewModel
+import com.interview.takeawayslight.model.RestaurantDataModel
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class RestaurantToRestaurantViewModelMapperImpl {
+class RestaurantToRestaurantDataModelMapperImpl {
 
     private val mapper = RestaurantToRestaurantViewModelMapper()
 
@@ -18,7 +18,7 @@ class RestaurantToRestaurantViewModelMapperImpl {
         Assert.assertEquals(mapper.map(getRestaurant()), expectedRestaurantViewModel())
     }
 
-    private fun expectedRestaurantViewModel() = RestaurantViewModel("restaurant", "open", true)
+    private fun expectedRestaurantViewModel() = RestaurantDataModel("restaurant", "open", true)
 
     private fun getRestaurant() = Restaurant(
         "restaurant",
