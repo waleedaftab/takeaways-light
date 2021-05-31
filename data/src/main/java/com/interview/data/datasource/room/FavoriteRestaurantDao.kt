@@ -4,17 +4,16 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FavoriteRestaurantDao {
     @Query("SELECT * from favorites")
-    fun getFavoriteRestaurants(): Single<List<FavoriteRestaurant>>
+    fun getFavoriteRestaurants(): Flow<List<FavoriteRestaurant>>
 
     @Insert
-    fun insert(favoriteRestaurant: FavoriteRestaurant): Completable
+    suspend fun insert(favoriteRestaurant: FavoriteRestaurant)
 
     @Delete
-    fun remove(favoriteRestaurant: FavoriteRestaurant): Completable
+    suspend fun remove(favoriteRestaurant: FavoriteRestaurant)
 }

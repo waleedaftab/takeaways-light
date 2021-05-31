@@ -1,10 +1,9 @@
 package com.interview.domain.repositories
 
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.flow.Flow
 
 interface FavoritesRepository {
-    fun getAllFavorites(): Single<List<String>>
-    fun addToFavorites(name: String): Completable
-    fun removeFavorite(name: String): Completable
+    fun getAllFavorites(): Flow<List<String>>
+    suspend fun addToFavorites(name: String)
+    suspend fun removeFavorite(name: String)
 }

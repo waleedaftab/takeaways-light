@@ -37,7 +37,7 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun providesJSONToRestaurantListMapper(gson: Gson): Mapper<String, List<Restaurant>> =
+    fun providesJSONToRestaurantListMapper(gson: Gson): @JvmWildcard Mapper<String, List<Restaurant>> =
         JSONToRestaurantListMapper(gson)
 
     @Singleton

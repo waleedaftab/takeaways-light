@@ -2,12 +2,12 @@ package com.interview.takeawayslight.mapper
 
 import com.interview.data.mapper.Mapper
 import com.interview.domain.model.Restaurant
-import com.interview.takeawayslight.model.RestaurantDetailsViewModel
+import com.interview.takeawayslight.model.RestaurantDetailsDataModel
 
-class RestaurantToRestaurantDetailsViewModelMapper :
-    Mapper<Restaurant, RestaurantDetailsViewModel> {
-    override fun map(input: Restaurant): RestaurantDetailsViewModel {
-        return RestaurantDetailsViewModel(
+object RestaurantToRestaurantDetailsViewModelMapper :
+    Mapper<Restaurant, RestaurantDetailsDataModel> {
+    override fun map(input: Restaurant): RestaurantDetailsDataModel {
+        return RestaurantDetailsDataModel(
             name = input.name,
             status = input.status,
             isFavorite = input.isFavorite,

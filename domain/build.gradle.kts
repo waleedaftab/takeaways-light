@@ -11,9 +11,8 @@ configure<JavaPluginConvention> {
 
 dependencies {
     implementation(AppDependencies.kotlinStdLib)
-    implementation(AppDependencies.rxJava)
-    implementation(AppDependencies.rxKotlin)
     implementation(AppDependencies.dagger)
+    implementation(AppDependencies.coroutines)
     kapt(AppDependencies.daggerCompiler)
 
     testImplementation(AppDependencies.testLibraries)

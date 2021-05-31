@@ -1,15 +1,14 @@
 package com.interview.domain.interactors
 
 import com.interview.domain.model.Restaurant
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.flow.Flow
 
 interface RestaurantListInteractor {
-    fun getRestaurantList(sortingOrder: SortingOrder): Single<List<Restaurant>>
+    fun getRestaurantList(sortingOrder: SortingOrder): Flow<List<Restaurant>>
     fun getSortOptions(): List<SortingOrder>
-    fun addFavorite(restaurantName: String): Completable
-    fun removeFavorite(restaurantName: String): Completable
-    fun getFavorites(): Single<List<String>>
+    suspend fun addFavorite(restaurantName: String)
+    suspend fun removeFavorite(restaurantName: String)
+    fun getFavorites(): Flow<List<String>>
 }
 
 enum class SortingOrder(val title: String) {

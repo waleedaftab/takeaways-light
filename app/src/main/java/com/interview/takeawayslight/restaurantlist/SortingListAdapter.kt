@@ -34,10 +34,16 @@ class SortingListAdapter(
         }
     }
 
-    fun setData(sortingOptions: List<SortingOrder>, selectedIndex: Int) {
+    fun setData(sortingOptions: List<SortingOrder>) {
         this.sortingOptionsList = sortingOptions
-        this.selectedIndex = selectedIndex
         notifyDataSetChanged()
+    }
+
+    fun setSelectedIndex(newSelectedIndex: Int) {
+        val oldSelectedIndex = selectedIndex
+        selectedIndex = newSelectedIndex
+        notifyItemChanged(oldSelectedIndex)
+        notifyItemChanged(selectedIndex)
     }
 
     inner class SortOptionViewHolder(val binding: SortCardBinding) :

@@ -10,10 +10,6 @@ object AppDependencies {
     val daggerAndroidCompiler =
         "com.google.dagger:dagger-android-processor:${Versions.dagger}"
 
-    val rxJava = "io.reactivex.rxjava3:rxjava:${Versions.rxJava}"
-    val rxKotlin = "io.reactivex.rxjava3:rxkotlin:${Versions.rxJava}"
-    val rxAndroid = "io.reactivex.rxjava3:rxandroid:3.0.0"
-
     private val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     private val material = "com.google.android.material:material:${Versions.appcompat}"
     private val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
@@ -24,18 +20,26 @@ object AppDependencies {
     private val mockito = "org.mockito:mockito-core:2.19.0"
     private val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:3.2.0"
 
+    private val viewModel =
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_version}"
+    private val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle_version}"
+
+    private val activityKtx = "androidx.activity:activity-ktx:${Versions.activity_version}"
+
+    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"
+
     val appLibraries = arrayListOf<String>().apply {
         add(kotlinStdLib)
         add(coreKtx)
+        add(activityKtx)
         add(dagger)
         add(daggerAndroid)
         add(daggerAndroidSupport)
-        add(rxJava)
-        add(rxKotlin)
         add(appcompat)
         add(material)
-        add(rxAndroid)
         add(constraintLayout)
+        add(viewModel)
+        add(liveData)
     }
 
     val testLibraries = arrayListOf<String>().apply {

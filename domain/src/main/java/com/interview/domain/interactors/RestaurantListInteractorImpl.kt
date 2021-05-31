@@ -3,25 +3,23 @@ package com.interview.domain.interactors
 import com.interview.domain.model.Restaurant
 import com.interview.domain.repositories.FavoritesRepository
 import com.interview.domain.repositories.RestaurantRepository
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.zip
 
 class RestaurantListInteractorImpl(
     private val repository: RestaurantRepository,
     private val favoritesRepository: FavoritesRepository
 ) : RestaurantListInteractor {
     private val priority = listOf("open", "closed", "order ahead")
-    override fun getRestaurantList(sortingOrder: SortingOrder): Single<List<Restaurant>> =
-        Single.zip(
-            repository.getRestaurantList(),
-            favoritesRepository.getAllFavorites(),
-            { restaurants, favorites ->
-                restaurants
-                    .map { it.apply { it.isFavorite = favorites.contains(it.name) } }
-                    .sortBySortingOrder(sortingOrder)
-                    .sortByStatus()
-                    .sortedBy { !it.isFavorite }
-            })
+    override fun getRestaurantList(sortingOrder: SortingOrder): Flow<List<Restaurant>> =
+        repository.getRestaurantList().zip(favoritesRepository.getAllFavorites())
+        { restaurants, favorites ->
+            restaurants
+                .map { it.apply { it.isFavorite = favorites.contains(it.name) } }
+                .sortBySortingOrder(sortingOrder)
+                .sortByStatus()
+                .sortedBy { !it.isFavorite }
+        }
 
     private fun List<Restaurant>.sortByStatus(): List<Restaurant> {
         return this.sortedWith { restaurant1, restaurant2 ->
@@ -48,11 +46,11 @@ class RestaurantListInteractorImpl(
         return SortingOrder.values().toList()
     }
 
-    override fun addFavorite(restaurantName: String): Completable =
+    override suspend fun addFavorite(restaurantName: String) =
         favoritesRepository.addToFavorites(restaurantName)
 
-    override fun removeFavorite(restaurantName: String): Completable =
+    override suspend fun removeFavorite(restaurantName: String) =
         favoritesRepository.removeFavorite(restaurantName)
 
-    override fun getFavorites(): Single<List<String>> = favoritesRepository.getAllFavorites()
+    override fun getFavorites(): Flow<List<String>> = favoritesRepository.getAllFavorites()
 }
