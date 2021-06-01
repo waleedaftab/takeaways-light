@@ -14,9 +14,8 @@ class RestaurantListActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    lateinit var restaurantListAdapter: RestaurantListAdapter
-    lateinit var sortingListAdapter: SortingListAdapter
+    private lateinit var restaurantListAdapter: RestaurantListAdapter
+    private lateinit var sortingListAdapter: SortingListAdapter
     private lateinit var binding: ActivityRestaurantListBinding
 
     private val restaurantListViewModel: RestaurantListViewModel by viewModels {

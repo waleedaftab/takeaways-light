@@ -57,6 +57,4 @@ class RestaurantListViewModel @Inject constructor(
     }
 
     fun getSortingOptions(): List<SortingOrder> = restaurantListInteractor.getSortOptions()
-
-
 }
